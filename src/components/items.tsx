@@ -1,28 +1,11 @@
-import { useEffect, useState } from 'react';
-import { defaultItems } from '../mocks/data';
+import { useItemsMethods } from '../hooks/items';
 
 type Props = {
   onBuyAll: () => void;
 };
 
 const Items = ({ onBuyAll }: Props) => {
-  const [items, setItems] = useState<Item[]>([]);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      await fetch('/items').then(async (res) => {
-        const userItems = await res.json();
-
-        if (!userItems) {
-          setItems(defaultItems);
-          return;
-        }
-        setItems(userItems);
-      });
-    };
-
-    fetchItems();
-  }, []);
+  const { items } = useItemsMethods();
 
   return (
     <>
