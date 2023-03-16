@@ -63,6 +63,7 @@ button {
 
 .item {
   position: relative;
+  cursor: pointer;
   flex: 1;
   background-color: #fff;
   border: 1px solid var(--dark);
@@ -80,4 +81,8 @@ button {
   bottom: -20%;
   transform: translate(-50%, -50%);
   position: absolute;
+}
+
+.item[data-selected='true'] {
+  background: var(--light);
 }

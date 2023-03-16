@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import { defaultItems } from '../mocks/data';
 
-export class ItemMethod {
+class ItemMethod {
   private remoteItemMethod: Item;
 
   constructor(remoteItemMethod: Item) {
@@ -20,13 +19,12 @@ export class ItemMethod {
   get price() {
     return this.remoteItemMethod.price;
   }
-
   get isLowPrice() {
     return this.price < 2000;
   }
 }
 
-const convertItemMethods = (items: Item[] | null) => {
+export const convertItemMethods = (items: Item[] | null) => {
   if (!items) {
     items = defaultItems;
   }
@@ -34,23 +32,4 @@ const convertItemMethods = (items: Item[] | null) => {
   const extended = items.map((item) => new ItemMethod(item));
 
   return extended;
-};
-
-export const useItemsMethods = () => {
-  const [items, setItems] = useState<ItemMethod[]>([]);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      await fetch('/items').then(async (res) => {
-        const userItems = await res.json();
-        const itemMethod = convertItemMethods(userItems);
-
-        setItems(itemMethod);
-      });
-    };
-
-    fetchItems();
-  }, []);
-
-  return { items };
 };
