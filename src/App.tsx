@@ -1,5 +1,5 @@
 import './App.css';
-import Items from './components/Items';
+import PersonalRecommend from './components/PersonalRecommend';
 
 function App() {
   const onBuyAll = () => {
@@ -8,8 +8,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>개인별 물건 추천 프로세스</h1>
-      <Items onBuyAll={onBuyAll} />
+      <PersonalRecommend onBuyAll={onBuyAll} />
     </div>
   );
 }
