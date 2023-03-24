@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useItemsMethods } from '../hooks/useItemMethod';
+import { useItemSelect } from '../hooks/useItemSelect';
 import Items from './Items';
 
 type Props = {
@@ -7,7 +8,8 @@ type Props = {
 };
 
 const PersonalRecommend = ({ onBuyAll }: Props) => {
-  const { items, selectedItems, onItemSelect } = useItemsMethods();
+  const { items } = useItemsMethods();
+  const { selectedItems, onItemSelect } = useItemSelect(items);
 
   const [total, setTotal] = useState(0);
 
