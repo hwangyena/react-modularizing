@@ -4,11 +4,16 @@ export const useItemSelect = (items: ItemMethod[]) => {
   const [selectedItems, setSelectedItems] = useState<ItemWithSelect[]>([]);
 
   useEffect(() => {
-    setSelectedItems(items.map((item) => ({ id: item.id, isSelected: false })));
+    setSelectedItems(
+      items.map((item) => ({
+        id: item.id,
+        price: item.price,
+        isSelected: false,
+      }))
+    );
   }, [items]);
 
   const onItemSelect = (selected: ItemMethod) => {
-    console.log('selected', selected);
     setSelectedItems((prev) =>
       prev.map((item) =>
         item.id === selected.id

@@ -11,5 +11,6 @@ type ItemMethod = Item & {
 
 type ItemWithSelect = {
   id: number;
+  price: number;
   isSelected: boolean;
 };

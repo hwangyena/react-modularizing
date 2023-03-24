@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useItemsMethods } from '../hooks/useItemMethod';
 import { useItemSelect } from '../hooks/useItemSelect';
 import Items from './Items';
+import TotalPrice from './TotalPrice';
 
 type Props = {
   onBuyAll: () => void;
@@ -10,12 +11,6 @@ type Props = {
 const PersonalRecommend = ({ onBuyAll }: Props) => {
   const { items } = useItemsMethods();
   const { selectedItems, onItemSelect } = useItemSelect(items);
-
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    setTotal(selectedItems.length);
-  }, [items]);
 
   return (
     <div>
@@ -31,7 +26,7 @@ const PersonalRecommend = ({ onBuyAll }: Props) => {
         <button onClick={onBuyAll}>모두 구입하기</button>
       </section>
       <section>
-        <h3>총 금액: {total}원</h3>
+        <TotalPrice selectedItems={selectedItems} />
       </section>
     </div>
   );
